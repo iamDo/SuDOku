@@ -75,14 +75,21 @@ function GameGrid:drawSubLines()
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
 end
 
-function GameGrid:drawCellsByCondition(condition)
+function GameGrid:operateOnAllCellsByCondition(condition, operation)
   for i=1,9 do
     for j=1,9 do
       if condition(self.cells[i][j]) then
-        self.cells[i][j]:draw()
+        operation(self.cells[i][j])
       end
     end
   end
+end
+
+function GameGrid:drawCellsByCondition(condition)
+  self:operateOnAllCellsByCondition(condition,
+    function(cell)
+      cell:draw()
+    end)
 end
 
 function GameGrid:drawCells()
