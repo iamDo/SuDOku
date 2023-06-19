@@ -57,20 +57,26 @@ end
 function GameGrid:draw()
   GameGrid.super.draw(self)
 
+  -- Drawing in this order to make sure selected and hovered cells
+  -- are not covered up by other cells
   self:drawSubLines()
   self:drawCells()
   self:drawHoveredCell()
   self:drawSelectedCell()
-
 end
 
 function GameGrid:drawSubLines()
   local subLineX = self.x + self.cellLength*3
   local subLineY = self.y + self.cellLength*3
+
   love.graphics.setLineWidth(self.subLineWidth)
+
+  -- vertical sublines
   love.graphics.line(subLineX, self.dims.top, subLineX, self.dims.bottom)
   subLineX = subLineX + self.cellLength*3
   love.graphics.line(subLineX, self.dims.top, subLineX, self.dims.bottom)
+
+  -- horizontal subline
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
   subLineY = subLineY + self.cellLength*3
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)

@@ -22,7 +22,6 @@ function Cell:draw()
   love.graphics.print(self.number, self.dims.left, self.dims.top, 0, self.textScale, self.textScale, self.textOffset)
  end
 
-
 function Cell:update(dt)
   self.hovered = false
 end
