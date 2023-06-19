@@ -5,10 +5,11 @@ function love.load()
   require "gamegrid"
   require "cell"
 
-  local font = love.graphics.newFont("fonts/font.otf", 300)
-  love.graphics.setFont(font)
+  local gridWidth = 300
+  local font = love.graphics.newFont("fonts/font.otf", gridWidth) -- for some reason this is a good scale
 
-  gameGrid = GameGrid(10, 10, 300)
+  love.graphics.setFont(font)
+  gameGrid = GameGrid(10, 10, gridWidth)
 end
 
 function love.update(dt)
