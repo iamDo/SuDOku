@@ -24,14 +24,4 @@ function Cell:draw()
 
 
 function Cell:update(dt)
-  x, y = love.mouse.getPosition()
-  if self:isPointInside(x, y) then
-    self.hovered = true
-  else
-    self.hovered = false
-  end
-
-  if self.hovered and love.mouse.isDown(1) then
-    self.selected = true
-  end
 end

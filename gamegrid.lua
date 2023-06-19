@@ -5,6 +5,7 @@ function GameGrid:new(x, y, length)
   self.subLineWidth = 3
   self.cells = {}
   self.cellLength = self.length/9
+  self.selectedCell = nil
 
   local cellX = self.x
   local cellY = self.y
@@ -21,9 +22,15 @@ function GameGrid:new(x, y, length)
 end
 
 function GameGrid:update(dt)
+  mouseX, mouseY = love.mouse.getPosition()
   for i=1,9 do
     for j=1,9 do
-      self.cells[i][j]:update(dt)
+      local currentCell = self.cells[i][j]
+      if currentCell:isPointInside(mouseX, mouseY) then
+        currentCell.hovered = true
+      else
+        currentCell.hovered = false
+      end
     end
   end
 end
