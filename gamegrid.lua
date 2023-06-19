@@ -26,6 +26,7 @@ function GameGrid:update(dt)
   for i=1,9 do
     for j=1,9 do
       local currentCell = self.cells[i][j]
+      currentCell:update(dt)
       if currentCell:isPointInside(mouseX, mouseY) then
         currentCell.hovered = true
       else
