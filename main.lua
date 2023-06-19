@@ -12,6 +12,7 @@ function love.load()
 end
 
 function love.update(dt)
+  gameGrid:update(dt)
 end
 
 function love.draw()
