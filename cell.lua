@@ -24,4 +24,5 @@ function Cell:draw()
 
 
 function Cell:update(dt)
+  self.hovered = false
 end
