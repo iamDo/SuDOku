@@ -3,6 +3,10 @@ function love.load()
   require "square"
   require "gamegrid"
   require "cell"
+
+  local font = love.graphics.newFont("fonts/font.otf", 300)
+  love.graphics.setFont(font)
+
   gameGrid = GameGrid(10, 10, 300)
   cell = Cell(20, 20, 300/9, "9")
 end
