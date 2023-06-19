@@ -31,22 +31,33 @@ end
 function GameGrid:draw()
   GameGrid.super.draw(self)
 
-  love.graphics.setLineWidth(self.subLineWidth)
+  self:drawSubLines()
+  self:drawCells()
+  self:drawHoveredCell()
+
+end
+
+function GameGrid:drawSubLines()
   local subLineX = self.x + self.cellLength*3
+  local subLineY = self.y + self.cellLength*3
+  love.graphics.setLineWidth(self.subLineWidth)
   love.graphics.line(subLineX, self.dims.top, subLineX, self.dims.bottom)
   subLineX = subLineX + self.cellLength*3
   love.graphics.line(subLineX, self.dims.top, subLineX, self.dims.bottom)
-  local subLineY = self.y + self.cellLength*3
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
   subLineY = subLineY + self.cellLength*3
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
+end
 
+function GameGrid:drawCells()
   for i=1,9 do
     for j=1,9 do
       self.cells[i][j]:draw()
     end
   end
+end
 
+function GameGrid:drawHoveredCell()
   for i=1,9 do
     for j=1,9 do
       if self.cells[i][j].hovered then
@@ -54,5 +65,4 @@ function GameGrid:draw()
       end
     end
   end
-
 end
