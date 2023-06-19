@@ -1,5 +1,6 @@
 function love.load()
   Object = require "libs.classic.classic"
+  inspect = require "libs.inspect.inspect"
   require "square"
   require "gamegrid"
   require "cell"
