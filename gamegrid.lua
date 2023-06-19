@@ -12,7 +12,7 @@ function GameGrid:new(x, y, length)
   for i=1,9 do
     self.cells[i] = {}
     for j=1,9 do
-      local cell = Cell(cellX, cellY, self.cellLength, i, self.color)
+      local cell = Cell(cellX, cellY, self.cellLength, "", self.color)
       self.cells[i][j] = cell
       cellX = cellX + self.cellLength
     end
