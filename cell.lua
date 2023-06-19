@@ -5,13 +5,16 @@ function Cell:new(x, y, length, number, color)
   self.baseColor = color
   self.number = number
   self.hovered = false
+  self.selected = false
   self.textScale = 0.004*length -- magic number for scale chosen by visual testing
   self.textOffset = -length
 end
 
 function Cell:draw()
   Cell.super.draw(self)
-  if self.hovered then
+  if self.selected then
+    self.color = {0, 255, 0}
+  elseif self.hovered then
     self.color = {255, 0, 0}
   else
     self.color = self.baseColor
@@ -26,5 +29,9 @@ function Cell:update(dt)
     self.hovered = true
   else
     self.hovered = false
+  end
+
+  if self.hovered and love.mouse.isDown(1) then
+    self.selected = true
   end
 end
