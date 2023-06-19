@@ -2,6 +2,7 @@ Cell = Square:extend()
 
 function Cell:new(x, y, length, number, color)
   Cell.super.new(self, x, y, length, 1, color)
+  self.baseColor = color
   self.number = number
   self.hovered = false
   self.textScale = 0.004*length -- magic number for scale chosen by visual testing
