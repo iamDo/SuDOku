@@ -1,0 +1,3 @@
+[submodule "libs/classic"]
+	path = libs/classic
+	url = https://github.com/rxi/classic.git
