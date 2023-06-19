@@ -32,6 +32,23 @@ function GameGrid:update(dt)
       else
         currentCell.hovered = false
       end
+
+      if currentCell.hovered and love.mouse.isDown(1) then
+        if self.selectedCell ~= nil then
+          self.selectedCell.selected = false
+        end
+        self.selectedCell = currentCell
+        self.selectedCell.selected = true
+      end
+    end
+  end
+
+  for i=1,9 do
+    local number = tostring(i)
+    if love.keyboard.isDown(number) then
+      if self.selectedCell ~= nil then
+        self.selectedCell.number = number
+      end
     end
   end
 end
