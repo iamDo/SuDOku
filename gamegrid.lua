@@ -23,25 +23,26 @@ end
 
 function GameGrid:update(dt)
   mouseX, mouseY = love.mouse.getPosition()
-  for i=1,9 do
-    for j=1,9 do
-      local currentCell = self.cells[i][j]
-      currentCell:update(dt)
-      if currentCell:isPointInside(mouseX, mouseY) then
-        currentCell.hovered = true
+  self:operateOnAllCellsByCondition(
+    function(cell)
+      return true
+    end,
+    function(cell)
+      cell:update(dt)
+      if cell:isPointInside(mouseX, mouseY) then
+        cell.hovered = true
       else
-        currentCell.hovered = false
+        cell.hovered = false
       end
-
-      if currentCell.hovered and love.mouse.isDown(1) then
+      if cell.hovered and love.mouse.isDown(1) then
         if self.selectedCell ~= nil then
           self.selectedCell.selected = false
         end
-        self.selectedCell = currentCell
+        self.selectedCell = cell
         self.selectedCell.selected = true
       end
     end
-  end
+  )
 
   for i=1,9 do
     local number = tostring(i)
