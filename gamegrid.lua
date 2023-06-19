@@ -75,30 +75,36 @@ function GameGrid:drawSubLines()
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
 end
 
-function GameGrid:drawCells()
+function GameGrid:drawCellsByCondition(condition)
   for i=1,9 do
     for j=1,9 do
-      self.cells[i][j]:draw()
+      if condition(self.cells[i][j]) then
+        self.cells[i][j]:draw()
+      end
     end
   end
+end
+
+function GameGrid:drawCells()
+  self:drawCellsByCondition(
+    function(cell)
+      return true
+    end
+  )
 end
 
 function GameGrid:drawHoveredCell()
-  for i=1,9 do
-    for j=1,9 do
-      if self.cells[i][j].hovered then
-        self.cells[i][j]:draw()
-      end
+  self:drawCellsByCondition(
+    function(cell)
+      return cell.hovered
     end
-  end
+  )
 end
 
 function GameGrid:drawSelectedCell()
-  for i=1,9 do
-    for j=1,9 do
-      if self.cells[i][j].selected then
-        self.cells[i][j]:draw()
-      end
+  self:drawCellsByCondition(
+    function(cell)
+      return cell.selected
     end
-  end
+  )
 end
