@@ -19,3 +19,8 @@ function Square:draw()
   love.graphics.setColor(self.color)
   love.graphics.rectangle("line", self.dims.left, self.dims.top, self.length, self.length)
 end
+
+function Square:isPointInside(x, y)
+  return x > self.dims.left and x < self.dims.right
+    and y > self.dims.top and y < self.dims.bottom
+end
