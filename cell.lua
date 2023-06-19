@@ -11,5 +11,20 @@ end
 
 function Cell:draw()
   Cell.super.draw(self)
+  if self.hovered then
+    self.color = {255, 0, 0}
+  else
+    self.color = self.baseColor
+  end
   love.graphics.print(self.number, self.dims.left, self.dims.top, 0, self.textScale, self.textScale, self.textOffset)
  end
+
+
+function Cell:update(dt)
+  x, y = love.mouse.getPosition()
+  if self:isPointInside(x, y) then
+    self.hovered = true
+  else
+    self.hovered = false
+  end
+end
