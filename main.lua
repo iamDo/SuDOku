@@ -8,7 +8,6 @@ function love.load()
   love.graphics.setFont(font)
 
   gameGrid = GameGrid(10, 10, 300)
-  cell = Cell(20, 20, 300/9, "9")
 end
 
 function love.update(dt)
@@ -16,5 +15,4 @@ end
 
 function love.draw()
   gameGrid:draw()
-  cell:draw()
 end
