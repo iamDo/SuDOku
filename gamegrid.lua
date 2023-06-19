@@ -1,7 +1,7 @@
 GameGrid = Square:extend()
 
 function GameGrid:new(x, y, length)
-  GameGrid.super.new(self, x, y, length, 5)
+  GameGrid.super.new(self, x, y, length, 5, {255, 255, 255})
   self.subLineWidth = 3
   self.cells = {}
   self.cellLength = self.length/9
@@ -11,7 +11,7 @@ function GameGrid:new(x, y, length)
   for i=1,9 do
     self.cells[i] = {}
     for j=1,9 do
-      local cell = Cell(cellX, cellY, self.cellLength, i)
+      local cell = Cell(cellX, cellY, self.cellLength, i, self.color)
       self.cells[i][j] = cell
       cellX = cellX + self.cellLength
     end

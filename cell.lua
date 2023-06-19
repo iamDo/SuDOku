@@ -1,8 +1,9 @@
 Cell = Square:extend()
 
-function Cell:new(x, y, length, number)
-  Cell.super.new(self, x, y, length, 1)
+function Cell:new(x, y, length, number, color)
+  Cell.super.new(self, x, y, length, 1, color)
   self.number = number
+  self.selected = false
   self.textScale = 0.004*length -- magic number for scale chosen by visual testing
   self.textOffset = -length
 end
