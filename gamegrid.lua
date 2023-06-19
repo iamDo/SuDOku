@@ -59,6 +59,7 @@ function GameGrid:draw()
   self:drawSubLines()
   self:drawCells()
   self:drawHoveredCell()
+  self:drawSelectedCell()
 
 end
 
@@ -86,6 +87,16 @@ function GameGrid:drawHoveredCell()
   for i=1,9 do
     for j=1,9 do
       if self.cells[i][j].hovered then
+        self.cells[i][j]:draw()
+      end
+    end
+  end
+end
+
+function GameGrid:drawSelectedCell()
+  for i=1,9 do
+    for j=1,9 do
+      if self.cells[i][j].selected then
         self.cells[i][j]:draw()
       end
     end
