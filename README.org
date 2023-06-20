@@ -3,4 +3,5 @@ A small weekend project in which I attempt to make a Sudoku game using [[https:/
 
 ** Libraries
 [[https://github.com/rxi/classic][Classic]]: A small class module for Lua
+
 [[https://github.com/kikito/inspect.lua][Inspect]]: A library to print tables in a human readable format
