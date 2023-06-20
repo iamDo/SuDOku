@@ -50,6 +50,18 @@ function GameGrid:draw()
   self:drawSelectedCell()
 end
 
+function GameGrid:getRow(index)
+  return self.cells[index]
+end
+
+function GameGrid:getColumn(index)
+  local column = {}
+  for i=1, 9 do
+    table.insert(column, self.cells[i][index])
+  end
+  return column
+end
+
 function GameGrid:setCellHovered(cell)
   local mouseX, mouseY = love.mouse.getPosition()
   if cell:isPointInside(mouseX, mouseY) then
