@@ -10,6 +10,15 @@ function love.load()
 
   love.graphics.setFont(font)
   gameGrid = GameGrid(10, 10, gridWidth)
+  pressedKeys = {}
+end
+
+function love.keypressed(key)
+  pressedKeys[key] = true
+end
+
+function love.keyreleased(key)
+  pressedKeys[key] = nil
 end
 
 function love.update(dt)
