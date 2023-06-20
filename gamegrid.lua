@@ -23,10 +23,7 @@ end
 
 function GameGrid:update(dt)
   mouseX, mouseY = love.mouse.getPosition()
-  self:operateOnAllCellsByCondition(
-    function(cell)
-      return true
-    end,
+  self:operateOnAllCells(
     function(cell)
       cell:update(dt)
       if cell:isPointInside(mouseX, mouseY) then
@@ -80,6 +77,14 @@ function GameGrid:drawSubLines()
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
   subLineY = subLineY + self.cellLength*3
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
+end
+
+function GameGrid:operateOnAllCells(operation)
+  for i=1,9 do
+    for j=1,9 do
+      operation(self.cells[i][j])
+    end
+  end
 end
 
 function GameGrid:operateOnAllCellsByCondition(condition, operation)
