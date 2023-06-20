@@ -1,5 +1,3 @@
-#+title: README
-
 * SuDOku
 A small weekend project in which I attempt to make a Sudoku game using [[https://love2d.org/][LÖVE2D]]
 
