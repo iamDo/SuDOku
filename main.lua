@@ -13,12 +13,19 @@ function love.load()
   pressedKeys = {}
 end
 
+function keyPadToNumber(key)
+  if string.match(key, "kp%d") then
+    key = string.gsub(key, "kp", "")
+  end
+  return key
+end
+
 function love.keypressed(key)
-  pressedKeys[key] = true
+  pressedKeys[keyPadToNumber(key)] = true
 end
 
 function love.keyreleased(key)
-  pressedKeys[key] = nil
+  pressedKeys[keyPadToNumber(key)] = nil
 end
 
 function love.update(dt)
