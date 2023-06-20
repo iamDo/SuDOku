@@ -30,11 +30,10 @@ function GameGrid:update(dt)
     end
   )
 
-  for i=1,9 do
-    local number = tostring(i)
-    if love.keyboard.isDown(number) then
-      if self.selectedCell ~= nil then
-        self.selectedCell.number = number
+  if pressedKeys ~= nil then
+    for key, _ in pairs(pressedKeys) do
+      if self.selectedCell ~= nil and tonumber(key) then
+        self.selectedCell.number = tonumber(key)
       end
     end
   end
