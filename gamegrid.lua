@@ -22,22 +22,11 @@ function GameGrid:new(x, y, length)
 end
 
 function GameGrid:update(dt)
-  mouseX, mouseY = love.mouse.getPosition()
   self:operateOnAllCells(
     function(cell)
       cell:update(dt)
-      if cell:isPointInside(mouseX, mouseY) then
-        cell.hovered = true
-      else
-        cell.hovered = false
-      end
-      if cell.hovered and love.mouse.isDown(1) then
-        if self.selectedCell ~= nil then
-          self.selectedCell.selected = false
-        end
-        self.selectedCell = cell
-        self.selectedCell.selected = true
-      end
+      self:setCellHovered(cell)
+      self:setCellSelected(cell)
     end
   )
 
@@ -60,6 +49,25 @@ function GameGrid:draw()
   self:drawCells()
   self:drawHoveredCell()
   self:drawSelectedCell()
+end
+
+function GameGrid:setCellHovered(cell)
+  local mouseX, mouseY = love.mouse.getPosition()
+  if cell:isPointInside(mouseX, mouseY) then
+    cell.hovered = true
+  else
+    cell.hovered = false
+  end
+end
+
+function GameGrid:setCellSelected(cell)
+  if cell.hovered and love.mouse.isDown(1) then
+    if self.selectedCell ~= nil then
+      self.selectedCell.selected = false
+    end
+    self.selectedCell = cell
+    self.selectedCell.selected = true
+  end
 end
 
 function GameGrid:drawSubLines()
