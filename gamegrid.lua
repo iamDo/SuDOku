@@ -40,7 +40,8 @@ function GameGrid:update(dt)
       end
     end
   end
-  self:validate()
+  self.valid = self:validate()
+  self.filled = self:isFilled()
 end
 
 
