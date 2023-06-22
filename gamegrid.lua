@@ -51,6 +51,7 @@ function GameGrid:draw()
   self:drawCells()
   self:drawHoveredCell()
   self:drawSelectedCell()
+  self:drawGridState()
 end
 
 
@@ -310,4 +311,14 @@ function GameGrid:drawSelectedCell()
       return cell.selected
     end
   )
+end
+
+
+-- Draws a text showing if the grid is valid
+function GameGrid:drawGridState()
+  local validText = "Grid is valid: " .. tostring(self.valid)
+  local filledText = "Grid is filled: " .. tostring(self.filled)
+  love.graphics.setColor(255, 255, 255)
+  love.graphics.print(validText, self.x, self.dims.bottom + 20, 0, 0.10, 0.10)
+  love.graphics.print(filledText, self.x, self.dims.bottom + 40, 0, 0.10, 0.10)
 end
