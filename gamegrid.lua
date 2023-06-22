@@ -6,6 +6,8 @@ function GameGrid:new(x, y, length)
   self.cells = {}
   self.cellLength = self.length/9
   self.selectedCell = nil
+  self.valid = true
+  self.filled = false
 
   local cellX = self.x
   local cellY = self.y
