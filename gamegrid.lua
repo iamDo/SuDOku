@@ -94,6 +94,15 @@ function GameGrid:getRow(index)
 end
 
 
+-- Returns if a value is already present in a given table
+function GameGrid:isValueInTable(value, t)
+  for _, v in ipairs(t) do
+    if v == value then return true end
+  end
+  return false
+end
+
+
 -- Returns the transposed version of a given table
 function GameGrid:transpose(t)
   local result = {}
