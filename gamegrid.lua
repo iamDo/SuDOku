@@ -38,6 +38,7 @@ function GameGrid:update(dt)
       end
     end
   end
+  self:validate()
 end
 
 
@@ -50,6 +51,36 @@ function GameGrid:draw()
   self:drawCells()
   self:drawHoveredCell()
   self:drawSelectedCell()
+end
+
+
+-- Returns if the entire grid is valid
+function GameGrid:validate()
+  -- Validate all rows
+  for i=1, #self.cells do
+    if not self:validateRow(i) then
+      return false
+    end
+  end
+
+  -- Validate all columns
+  for i=1, #self.cells[1] do
+    if not self:validateColumn(i) then
+      return false
+    end
+  end
+
+  -- Validate all groups
+  -- TODO: actually calculate the 3 value
+  for i=1, 3 do
+    for j=1, 3 do
+      if not self:validateGroup(i, j) then
+        return false
+      end
+    end
+  end
+
+  return true
 end
 
 
