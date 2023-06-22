@@ -84,6 +84,19 @@ function GameGrid:validate()
 end
 
 
+function GameGrid:isFilled()
+  local isFilled = false
+  for i=1, #self.cells do
+    for j=1, #self.cells[i] do
+      if self.cells[i][j].number == "" then
+        return false
+      end
+    end
+  end
+  return true
+end
+
+
 -- Returns if a row of the grid is valid
 function GameGrid:validateRow(index)
   local row = self:getRow(index)
