@@ -67,6 +67,13 @@ function GameGrid:validateColumn(index)
 end
 
 
+-- Returns if a group of the grid is valid
+function GameGrid:validateGroup(x, y)
+  local group = self:getGroup(x, y)
+  return self:validateTable(self:flatten(group))
+end
+
+
 -- Returns if a table is valid
 function GameGrid:validateTable(t)
   local seen = {}
