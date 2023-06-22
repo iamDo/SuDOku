@@ -21,6 +21,7 @@ function GameGrid:new(x, y, length)
   end
 end
 
+
 function GameGrid:update(dt)
   self:operateOnAllCells(
     function(cell)
@@ -39,6 +40,7 @@ function GameGrid:update(dt)
   end
 end
 
+
 function GameGrid:draw()
   GameGrid.super.draw(self)
 
@@ -50,10 +52,14 @@ function GameGrid:draw()
   self:drawSelectedCell()
 end
 
+
+-- Returns the (vertical) row at the given index
 function GameGrid:getRow(index)
   return self.cells[index]
 end
 
+
+-- Returns the (horizontal) column at the given index
 function GameGrid:getColumn(index)
   local column = {}
   for i=1, 9 do
@@ -62,6 +68,8 @@ function GameGrid:getColumn(index)
   return column
 end
 
+
+-- Returns a group of cells between the given coordinates
 function GameGrid:getSelection(x1, y1, x2, y2)
   local group = {}
 
@@ -75,6 +83,8 @@ function GameGrid:getSelection(x1, y1, x2, y2)
   return group
 end
 
+
+-- Sets the hovered property of the given cell
 function GameGrid:setCellHovered(cell)
   local mouseX, mouseY = love.mouse.getPosition()
   if cell:isPointInside(mouseX, mouseY) then
@@ -84,6 +94,8 @@ function GameGrid:setCellHovered(cell)
   end
 end
 
+
+-- Sets the selected property of the given cell
 function GameGrid:setCellSelected(cell)
   if cell.hovered and love.mouse.isDown(1) then
     if self.selectedCell ~= nil then
@@ -94,6 +106,8 @@ function GameGrid:setCellSelected(cell)
   end
 end
 
+
+-- Draws the sublines of the grid
 function GameGrid:drawSubLines()
   local subLineX = self.x + self.cellLength*3
   local subLineY = self.y + self.cellLength*3
@@ -111,6 +125,8 @@ function GameGrid:drawSubLines()
   love.graphics.line(self.dims.left, subLineY, self.dims.right, subLineY)
 end
 
+
+-- Performs the given operation on all cells
 function GameGrid:operateOnAllCells(operation)
   for i=1,9 do
     for j=1,9 do
@@ -119,6 +135,8 @@ function GameGrid:operateOnAllCells(operation)
   end
 end
 
+
+-- Performs the given operation on all cells that satisfy the given condition
 function GameGrid:operateOnAllCellsByCondition(condition, operation)
   for i=1,9 do
     for j=1,9 do
@@ -129,6 +147,8 @@ function GameGrid:operateOnAllCellsByCondition(condition, operation)
   end
 end
 
+
+-- Draws all cells that satisfy the given condition
 function GameGrid:drawCellsByCondition(condition)
   self:operateOnAllCellsByCondition(condition,
     function(cell)
@@ -136,6 +156,8 @@ function GameGrid:drawCellsByCondition(condition)
     end)
 end
 
+
+-- Draws all cells
 function GameGrid:drawCells()
   self:drawCellsByCondition(
     function(cell)
@@ -144,6 +166,8 @@ function GameGrid:drawCells()
   )
 end
 
+
+-- Draws the hovered cell
 function GameGrid:drawHoveredCell()
   self:drawCellsByCondition(
     function(cell)
@@ -152,6 +176,8 @@ function GameGrid:drawHoveredCell()
   )
 end
 
+
+-- Draws the selected cell
 function GameGrid:drawSelectedCell()
   self:drawCellsByCondition(
     function(cell)
