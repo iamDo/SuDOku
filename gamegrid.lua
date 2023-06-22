@@ -53,6 +53,20 @@ function GameGrid:draw()
 end
 
 
+-- Returns if a table is valid
+function GameGrid:validateTable(t)
+  local seen = {}
+  for i, v in ipairs(t) do
+    if seen[v] then
+      return false
+    else
+      seen[v] = true
+    end
+  end
+  return true
+end
+
+
 -- Returns the (vertical) row at the given index
 function GameGrid:getRow(index)
   return self.cells[index]
