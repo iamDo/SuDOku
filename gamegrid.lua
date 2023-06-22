@@ -69,6 +69,16 @@ function GameGrid:getColumn(index)
 end
 
 
+-- Returns a 3x3 group of cells at the given coordinates
+function GameGrid:getGroup(x, y)
+  local x1 = (x - 1)*3 + 1
+  local x2 = x1 + 2
+  local y1 = (y - 1)*3 + 1
+  local y2 = y1 + 2
+  return self:getSelection(x1, y1, x2, y2)
+end
+
+
 -- Returns a group of cells between the given coordinates
 function GameGrid:getSelection(x1, y1, x2, y2)
   local group = {}
