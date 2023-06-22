@@ -87,6 +87,31 @@ function GameGrid:getRow(index)
 end
 
 
+-- Returns the transposed version of a given table
+function GameGrid:transpose(t)
+  local result = {}
+  for i = 1, #t[1] do
+    result[i] = {}
+    for j = 1, #t do
+      result[i][j] = t[j][i]
+    end
+  end
+  return result
+end
+
+
+-- Returns a flattened version of a given table
+function GameGrid:flatten(t)
+  local result = {}
+  for i = 1, #t do
+    for j = 1, #t[i] do
+      table.insert(result, t[i][j])
+    end
+  end
+  return result
+end
+
+
 -- Returns the (horizontal) column at the given index
 function GameGrid:getColumn(index)
   local column = {}
