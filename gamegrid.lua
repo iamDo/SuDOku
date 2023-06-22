@@ -53,6 +53,20 @@ function GameGrid:draw()
 end
 
 
+-- Returns if a row of the grid is valid
+function GameGrid:validateRow(index)
+  local row = self:getRow(index)
+  return self:validateTable(row)
+end
+
+
+-- Returns if a column of the grid is valid
+function GameGrid:validateColumn(index)
+  local column = self:getColumn(index)
+  return self:validateTable(column)
+end
+
+
 -- Returns if a table is valid
 function GameGrid:validateTable(t)
   local seen = {}
